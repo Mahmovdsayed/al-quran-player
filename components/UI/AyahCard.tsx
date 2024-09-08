@@ -1,47 +1,58 @@
 'use client'
 
 import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { BsThreeDots } from "react-icons/bs";
-import { FaBookOpen, FaPause, FaPlay } from "react-icons/fa";
+import { FaPause, FaPlay } from "react-icons/fa";
+import Modals from "./Modal";
+import { cleanText } from "@/functions/cleanText";
+import CopyAyah from "./CopyAyah";
 
 interface IProps {
     ayah: string;
     ayahENn: string;
-    surahId: string;
     sound: string;
-    numberInSurah: string;
+    surahId: string;
+    numberInSurah: any;
 }
 
-const AyahCard = ({ ayah, ayahENn, surahId, sound, numberInSurah }: IProps) => {
+const AyahCard = ({ ayah, ayahENn, sound, surahId, numberInSurah }: IProps) => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [audioSrc, setAudioSrc] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (audioSrc && isPlaying) {
+            audioRef.current?.play();
+        }
+    }, [audioSrc]);
 
     const handlePlayPause = () => {
         if (isPlaying) {
             audioRef.current?.pause();
+            setIsPlaying(false);
         } else {
-            audioRef.current?.play();
+            if (!audioSrc) {
+                setAudioSrc(`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${sound}.mp3`);
+            } else {
+                audioRef.current?.play();
+            }
+            setIsPlaying(true);
         }
-        setIsPlaying(!isPlaying);
     };
 
     const handleAudioEnded = () => {
         setIsPlaying(false);
     };
 
-    const ayahText = surahId !== "1" && numberInSurah == "1" ? ayah.replace('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ', '') : ayah;
-
     return (
-        <Card isPressable className='my-4 p-4 bg-gray-200 w-full' shadow='none'>
+        <Card isPressable className='my-2 p-4 bg-transparent w-full' radius="sm" shadow='none'>
             <CardHeader className='flex justify-between items-center'>
                 <div>
                     <span className='font-bold text-default-500 text-sm'>{surahId} : {numberInSurah}</span>
                 </div>
                 <div className='flex items-center justify-center space-x-2'>
-                    <Button size='sm' className='bg-transparent text-default-500 font-bold' isIconOnly>
-                        <FaBookOpen />
-                    </Button>
+                    <Modals ayahAR={ayah} ayahEN={ayahENn} ayahKey={`${surahId} : ${numberInSurah}`} />
                     <Button
                         size='sm'
                         className='bg-transparent text-default-500 font-bold'
@@ -50,20 +61,20 @@ const AyahCard = ({ ayah, ayahENn, surahId, sound, numberInSurah }: IProps) => {
                     >
                         {isPlaying ? <FaPause /> : <FaPlay />}
                     </Button>
-                    <Button size='sm' className='bg-transparent text-default-500 font-bold' isIconOnly>
-                        <BsThreeDots />
-                    </Button>
+                    <CopyAyah ayah={ayah} />
                 </div>
             </CardHeader>
             <CardBody>
-                <span contentEditable="false" className='flex justify-end text-xl md:text-4xl items-end text-end leading-9 mb-3'>{ayahText}</span>
-                <span contentEditable="false" className='flex justify-start text-sm md:text-2xl items-start text-start'>{ayahENn}</span>
-                <audio
-                    ref={audioRef}
-                    src={sound}
-                    style={{ display: 'none' }}
-                    onEnded={handleAudioEnded}
-                />
+                <p contentEditable="false" className='flex justify-end text-2xl md:text-4xl items-end text-end leading-9 md:leading-[2] mb-3'>{ayah}</p>
+                <p contentEditable="false" className='flex justify-start text-medium md:text-xl text-default-600 font-medium items-start text-start'>{cleanText(ayahENn || "")}</p>
+                {audioSrc && (
+                    <audio
+                        ref={audioRef}
+                        src={audioSrc}
+                        style={{ display: 'none' }}
+                        onEnded={handleAudioEnded}
+                    />
+                )}
             </CardBody>
         </Card>
     );

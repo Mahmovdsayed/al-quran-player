@@ -1,6 +1,6 @@
 {
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "#fff",
+  "background_color": "#fff",
   "icons": [
     {
       "purpose": "maskable",
@@ -15,13 +15,12 @@
       "type": "image/png"
     }
   ],
-  "orientation": "any",
   "display": "standalone",
   "dir": "left",
   "lang": "en-US",
-  "name": "Nextjs Template",
-  "short_name": "Nextjs Template",
+  "name": "AL-Quran Player",
+  "short_name": "AL-Quran Player",
   "start_url": "/",
   "scope": "/",
-  "description": "nextjs template (Tailwindcss + Typescript + NextUI + NextPWA + React-Icons ) by @Mahmovdsayed"
+  "description": "Comprehensive Quran Experience: Listen, Learn, and Understand"
 }
