@@ -9,10 +9,10 @@ import { cleanText } from "@/functions/cleanText";
 import CopyAyah from "./CopyAyah";
 
 interface IProps {
-    ayah: string;
-    ayahENn: string;
-    sound: string;
-    surahId: string;
+    ayah: any;
+    ayahENn: any;
+    sound: any;
+    surahId: any;
     numberInSurah: any;
 }
 

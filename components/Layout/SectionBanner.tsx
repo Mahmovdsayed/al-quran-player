@@ -6,6 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import Bread from "../UI/Bread";
 import { FaInfo, FaPlay, FaReadme } from "react-icons/fa";
+import Search from "./Search";
 
 interface IProps {
     url: string
@@ -62,6 +63,9 @@ const SectionBanner = ({ url }: IProps) => {
                         >
                             Next Surah
                         </Button>
+                    </div>
+                    <div className="my-4">
+                        <Search />
                     </div>
                     <div className="flex items-center justify-center space-x-2 ">
                         <Button startContent={<FaReadme />} onClick={() => router.push(`/${"read"}/${slug}`)} variant="flat" size="sm">Read Surah</Button>

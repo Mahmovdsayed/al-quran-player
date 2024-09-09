@@ -4,10 +4,11 @@ import "./globals.css";
 import { Providers } from "@/provider/Providers";
 import { Analytics } from "@vercel/analytics/react";
 import Navigation from "@/components/Layout/Navigation";
+import Footer from "@/components/Layout/Footer";
 const font = Poppins({ subsets: ["latin"], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] });
 
 
-const metadataBase = new URL('http://localhost:3000/');
+const metadataBase = new URL('https://alquran-player.vercel.app/');
 
 export const metadata: Metadata = {
   metadataBase,
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AL-Quran Player",
     description: "Explore and enjoy the Quran with AL-Quran Player. Listen to over 70 reciters, view detailed Surah information, customize and share Ayah cards, and track daily prayer times.",
-    url: "https://ex.com",
+    url: "https://alquran-player.vercel.app/",
     siteName: "AL-Quran Player",
     images: [
       {
@@ -57,6 +58,7 @@ export default function RootLayout({
         <Providers>
           <Navigation />
           {children}
+          <Footer />
           <Analytics />
         </Providers>
       </body>

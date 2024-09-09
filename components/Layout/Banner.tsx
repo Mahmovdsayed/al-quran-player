@@ -5,6 +5,7 @@ import { Button, Spinner } from "@nextui-org/react";
 import { useState, useCallback, useMemo, useRef } from "react";
 import { BsStars } from "react-icons/bs";
 import AyahCard from "../UI/AyahCard";
+import Search from "./Search";
 
 interface IProps { }
 
@@ -62,6 +63,7 @@ const Banner = ({ }: IProps) => {
                 <div className="mt-6">
                     {renderAyahCard}
                 </div>
+                <Search />
             </div>
         </div>
     );

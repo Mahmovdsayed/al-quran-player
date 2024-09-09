@@ -1,68 +1,73 @@
-'use client'
+'use client';
 
-import LoadingScreen from "@/components/Layout/LoadingScreen";
-import AyahCard from "@/components/UI/AyahCard";
-import { surahDataTranslation } from "@/context/surahContext";
-import { surah } from "@/static/surah";
-import { AppDispatch, RootState } from "@/store";
-import { fetchSurahData, selectSurah } from "@/store/slices/surahSlice";
-import { Button, Divider, Link, ScrollShadow, Spinner } from "@nextui-org/react";
-import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/store';
+import { fetchSurahData, selectSurah } from '@/store/slices/surahSlice';
+import { fetchSurahTranslationData, selectSurahTranslation } from '@/store/slices/surahTranslationSlice';
+import { Button, Divider, Spinner } from '@nextui-org/react';
+import { useParams, useRouter } from 'next/navigation';
+import { GrLinkNext, GrLinkPrevious } from 'react-icons/gr';
+import AyahCard from '@/components/UI/AyahCard';
+import { surah } from '@/static/surah';
+
 interface IProps {
-    surahID: string
-    url: string
-
+    surahID: string;
+    url: string;
 }
+
 const SurahSection = ({ surahID, url }: IProps) => {
-    const [dataEn, setDataEn] = useState<any[]>([])
     const dispatch = useDispatch<AppDispatch>();
-    const { surahh, loading, error } = useSelector(selectSurah);
+    const { surahh, loading: surahLoading, error: surahError } = useSelector(selectSurah);
+    const { translations, loading: translationLoading, error: translationError } = useSelector(selectSurahTranslation);
 
     const { slug } = useParams();
-    const router = useRouter()
+    const router = useRouter();
     const selectedSurah = surah.find(surahItem => surahItem.id.toString() === slug);
     const previousSurah = selectedSurah
-        ? surah.find((surahItem) => surahItem.id === selectedSurah.id - 1)
+        ? surah.find(surahItem => surahItem.id === selectedSurah.id - 1)
         : null;
     const nextSurah = selectedSurah
-        ? surah.find((surahItem) => surahItem.id === selectedSurah.id + 1)
+        ? surah.find(surahItem => surahItem.id === selectedSurah.id + 1)
         : null;
 
-    const enData = async () => {
-        const data = await surahDataTranslation(surahID);
-        setDataEn(data)
-    }
-
     useEffect(() => {
-        enData()
-        dispatch(fetchSurahData(surahID));
-    }, [dispatch]);
+        if (surahID) {
+            dispatch(fetchSurahData(surahID));
+            dispatch(fetchSurahTranslationData(surahID));
+        }
+    }, [dispatch, surahID]);
 
-    if (loading) {
+    if (surahLoading || translationLoading) {
         return <div className="flex items-center justify-center"><Spinner /></div>;
     }
 
-    if (error) {
-        return <div>Error: {error}</div>;
+    if (surahError) {
+        return <div>Error fetching surah data: {surahError}</div>;
     }
-    return <>
-        <div className="">
 
-            {surahh.map((verse: any, index) => <>
+    if (translationError) {
+        return <div>Error fetching translation data: {translationError}</div>;
+    }
+
+    return (
+        <div>
+            {surahh.map((verse, index) => (
                 <div key={verse.id}>
-                    <AyahCard ayah={verse.text_imlaei} ayahENn={dataEn[index]?.text} numberInSurah={dataEn[index]?.verse_number} sound={verse.id} surahId={surahID} key={verse.id} />
+                    <AyahCard
+                        ayah={verse.text_imlaei}
+                        ayahENn={translations[index]?.text}
+                        numberInSurah={translations[index]?.verse_number}
+                        sound={verse.id}
+                        surahId={surahID}
+                    />
                     <Divider />
                 </div>
-            </>
-            )}
+            ))}
             <div className="flex justify-center space-x-2 items-center my-4">
                 <Button
                     isDisabled={!previousSurah}
                     startContent={<GrLinkPrevious />}
-
                     onClick={() => {
                         if (previousSurah) {
                             router.push(`/${url}/${previousSurah.id}`);
@@ -71,7 +76,6 @@ const SurahSection = ({ surahID, url }: IProps) => {
                 >
                     Previous Surah
                 </Button>
-
                 <Button
                     isDisabled={!nextSurah}
                     startContent={<GrLinkNext />}
@@ -85,7 +89,7 @@ const SurahSection = ({ surahID, url }: IProps) => {
                 </Button>
             </div>
         </div>
-    </>;
+    );
 };
 
 export default SurahSection;

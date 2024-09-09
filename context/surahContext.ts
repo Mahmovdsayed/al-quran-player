@@ -19,7 +19,7 @@ const surahDataTranslation = async (surahID: string) => {
     const { data } = await api.get(
       `/quran/translations/131?fields=id,chapter_id,verse_number,verse_key,verse_index&chapter_number=${surahID}`
     );
-    return data.translations;
+    return data;
   } catch (error) {
     console.log(error);
     return null;

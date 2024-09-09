@@ -4,6 +4,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import surahReducer from "./slices/surahSlice";
 import reciterReducer from "./slices/reciterSlice";
+import surahTranslationReducer from "./slices/surahTranslationSlice";
 
 // Configuration for redux-persist
 const persistConfig = {
@@ -14,6 +15,7 @@ const persistConfig = {
 // Combine reducers into a root reducer
 const rootReducer = combineReducers({
   surahh: surahReducer,
+  surahTranslation: surahTranslationReducer,
   reciter: reciterReducer,
 });
 

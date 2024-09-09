@@ -6,7 +6,7 @@ import { surahData } from "@/context/surahContext"; // Importing surahData funct
 interface Surah {
   id: number; // Unique identifier for each verse
   verse_key: string; // Key that represents the verse
-  text_indopak: string; // Text of the verse in Indopak script
+  text_imlaei: string; // Text of the verse in Indopak script
 }
 
 // Define the state structure for Surah data

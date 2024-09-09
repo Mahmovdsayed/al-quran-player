@@ -32,41 +32,9 @@ const Navigation = ({ }: IProps) => {
             origin: { y: 0.6 },
         });
     };
-    // const removeDiacritics = (text: string): string => {
-    //     return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    // };
 
-    // const searchSurah = () => {
-    //     const normalizedQuery = removeDiacritics(searchQuery.toLowerCase());
-    //     console.log('Searching for:', normalizedQuery);
 
-    //     let result = null;
-    //     if (!isNaN(Number(normalizedQuery))) {
-    //         // If the search query is a number, search by Surah number
-    //         const surahNumber = Number(normalizedQuery);
-    //         result = surah.find(surah => surah.number === surahNumber);
-    //     } else {
-    //         // If the search query is a text, search by English name
-    //         result = surah.find(surah =>
-    //             removeDiacritics(surah.englishName.toLowerCase()) === normalizedQuery
-    //         );
-    //     }
 
-    //     if (result) {
-    //         console.log('Search result:', result);
-    //     } else {
-    //         console.log('Surah not found');
-    //     }
-
-    //     setSearchResult(result || `Surah with name or number "${searchQuery}" not found.`);
-    // };
-
-    const handleCardClick = (surahNumber: number) => {
-        // Hide the search result
-        setSearchResult(null);
-        // Navigate to the new page
-        router.push(`/play/${surahNumber}`);
-    };
 
     return (
         <>
@@ -103,43 +71,7 @@ const Navigation = ({ }: IProps) => {
                     </NavbarContent>
                 </Navbar>
             </div>
-            {/* <div className="flex items-center justify-center w-full p-2">
-                <div className="flex items-center mt-4">
-                    <Input
-                        type="text"
-                        placeholder="Search Quran..."
-                        className="md:min-w-[600px] min-w-[350px]  m-auto font-semibold"
-                        value={searchQuery}
-                        description={"Search by Surah Number or English Name"}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        onKeyPress={(e) => {
-                            if (e.key === 'Enter') {
-                                searchSurah();
-                            }
-                        }}
-                    />
-                </div>
-            </div>
-            <div className="">
-                {searchResult && typeof searchResult === 'string' ? (
-                    <div className="text-red-500">{searchResult}</div>
-                ) : searchResult ? (
-                    <div className="container mx-auto flex justify-center items-center p-4">
-                        <Card
-                            isPressable
-                            onClick={() => handleCardClick(searchResult.number)}
-                            className="bg-gray-200 dark:bg-[#181818] w-full"
-                            shadow="none"
-                        >
-                            <CardBody>
-                                <h2 className="text-xl font-bold">{searchResult.name} ({searchResult.englishName})</h2>
-                                <p>Surah Number: {searchResult.number}</p>
-                                <p>Number of Ayahs: {searchResult.numberOfAyahs}</p>
-                            </CardBody>
-                        </Card>
-                    </div>
-                ) : null}
-            </div> */}
+
         </>
     );
 };

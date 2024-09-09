@@ -19,13 +19,13 @@ const CopyAyah = ({ ayah }: IProps) => {
             const result = document.execCommand("copy");
             document.body.removeChild(input);
             if (result) {
-                toast.success("Link copied to clipboard!");
+                toast.success("Ayah copied to clipboard!");
             } else {
                 throw new Error("Failed to copy using fallback method.");
             }
         } catch (err) {
             console.error("Failed to copy using fallback method:", err);
-            toast.error("Failed to copy link to clipboard!");
+            toast.error("Failed to copy Ayah to clipboard!");
         }
 
     };
