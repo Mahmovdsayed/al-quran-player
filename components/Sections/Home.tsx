@@ -13,6 +13,8 @@ import Prayer from "./Prayer";
 import { FaNfcDirectional } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { CgNotes } from "react-icons/cg";
+import AzkarSection from "./AzkarSection";
 
 const Home = ({ }: IProps) => {
     const router = useRouter()
@@ -86,6 +88,20 @@ const Home = ({ }: IProps) => {
                     }
                 >
                     <Prayer />
+                </Tab>
+                <Tab
+                    key="azkar"
+                    title={
+                        <div className="flex items-center space-x-2">
+                            <CgNotes />
+                            <span>Azkar</span>
+                            <Chip size="sm" variant="faded">3</Chip>
+                        </div>
+                    }
+                >
+                    <div className="w-full">
+                        <AzkarSection />
+                    </div>
                 </Tab>
             </Tabs>
         </div>
