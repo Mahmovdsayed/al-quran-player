@@ -24,7 +24,7 @@ const Home = ({ }: IProps) => {
                 aria-label="Options"
                 className="flex items-center mb-3  justify-center w-full"
                 color="primary"
-                size="lg"
+                size="sm"
                 variant="underlined"
                 classNames={{
                     tabList: "gap-4 relative rounded-none p-0 border-b border-divider",
