@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import SurahSection from '@/components/Sections/SurahSection';
 import SectionBanner from '@/components/Layout/SectionBanner';
 import { surah } from '@/static/surah';
 import Plays from '@/components/Sections/play/Play';
