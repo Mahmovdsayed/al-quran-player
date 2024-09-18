@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "@/provider/Providers";
 import { Analytics } from "@vercel/analytics/react";
 import Navigation from "@/components/Layout/Navigation";
+import ScrollBar from "@/components/Layout/ScrollBar";
 import Footer from "@/components/Layout/Footer";
 const font = Poppins({ subsets: ["latin"], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] });
 
@@ -56,6 +57,7 @@ export default function RootLayout({
     <html lang="en" dir="ltr" className="dark">
       <body className={`${font.className} overflow-x-hidden min-h-screen`}>
         <Providers>
+          <ScrollBar />
           <Navigation />
           {children}
           <Footer />
