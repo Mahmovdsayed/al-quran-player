@@ -61,7 +61,7 @@ const Filters = ({ surahID }: IProps) => {
                     labelPlacement="inside"
                     radius="sm"
                     showScrollIndicators
-                    isLoading={isLoading}
+                    // isLoading={isLoading}
                 >
                     {surah.map((su: any) => (
                         <SelectItem
@@ -89,7 +89,7 @@ const Filters = ({ surahID }: IProps) => {
                     labelPlacement="inside"
                     selectedKeys={new Set([selectedReciterId])}
                     onSelectionChange={handleReciterChange}
-                    isLoading={isLoading}
+                    // isLoading={isLoading}
                 >
                     {recitations.map((rec) => (
                         <SelectItem

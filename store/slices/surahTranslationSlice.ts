@@ -26,7 +26,6 @@ export const fetchSurahTranslationData = createAsyncThunk(
   "surahTranslation/fetchSurahTranslationData",
   async (surahID: string) => {
     const response = await surahDataTranslation(surahID);
-    console.log("fetchSurahTranslationData response:", response);
     return response.translations as SurahTranslation[];
   }
 );

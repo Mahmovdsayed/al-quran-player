@@ -7,6 +7,7 @@ import { FaPause, FaPlay } from "react-icons/fa";
 import Modals from "./Modal";
 import { cleanText } from "@/functions/cleanText";
 import CopyAyah from "./CopyAyah";
+import { PiBookBookmarkDuotone } from "react-icons/pi";
 
 interface IProps {
     ayah: any;
@@ -65,8 +66,8 @@ const AyahCard = ({ ayah, ayahENn, sound, surahId, numberInSurah }: IProps) => {
                 </div>
             </CardHeader>
             <CardBody>
-                <p contentEditable="false" className='flex justify-end text-2xl md:text-4xl items-end text-end leading-9 md:leading-[2] mb-3'>{ayah}</p>
-                <p contentEditable="false" className='flex justify-start text-medium md:text-xl text-default-600 font-medium items-start text-start'>{cleanText(ayahENn || "")}</p>
+                <p className='flex justify-end text-2xl md:text-4xl items-end text-end leading-9 md:leading-[2] mb-3'>{ayah}</p>
+                <p className='flex justify-start text-medium md:text-xl text-default-600 font-medium items-start text-start'>{cleanText(ayahENn || "")}</p>
                 {audioSrc && (
                     <audio
                         ref={audioRef}

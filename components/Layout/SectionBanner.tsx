@@ -35,7 +35,7 @@ const SectionBanner = ({ url }: IProps) => {
                         {selectedSurah ? `Surah ` + selectedSurah.name_complex : 'Surah not found'}
                     </h1>
                     <p className="text-default-600 px-4 text-tiny md:text-sm">
-                        {`Discover Surah ${selectedSurah?.name_simple} (سوره ${selectedSurah?.name_arabic}), the ${selectedSurah?.id}th chapter of the Quran, revealed in ${selectedSurah?.revelation_place === 'makkah' ? 'Makkah' : 'Madinah'}. Listen to the beautiful recitation of Surah ${selectedSurah?.name_simple} and explore its profound meanings and messages.`}
+                        {selectedSurah ? `Discover Surah ${selectedSurah?.name_simple} (سوره ${selectedSurah?.name_arabic}), the ${selectedSurah?.id}th chapter of the Quran, revealed in ${selectedSurah?.revelation_place === 'makkah' ? 'Makkah' : 'Madinah'}. Listen to the beautiful recitation of Surah ${selectedSurah?.name_simple} and explore its profound meanings and messages.` : 'Surah not found'}
                     </p>
                     <div className="flex justify-center space-x-2 items-center my-4">
                         <Button

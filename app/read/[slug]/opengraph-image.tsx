@@ -70,7 +70,7 @@ export default async function Image({
                         overflow: 'hidden',
                     }}
                 >
-                    Error loading image
+                    Surah not found
                 </div>
             ),
             {

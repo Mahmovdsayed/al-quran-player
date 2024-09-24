@@ -10,10 +10,12 @@ interface IProps {
 }
 
 const ImageBasmala = ({ num }: IProps) => {
+
     const { theme, setTheme } = useTheme();
-    console.log(num)
-    // Check if num is 1, and return null to hide the image
-    if (num === "1") {
+    const parsedNum = Number(num);
+
+    // Check if num less than or equal 1, or greater than 114
+    if (parsedNum <= 1 || parsedNum > 114) {
         return null;
     }
 

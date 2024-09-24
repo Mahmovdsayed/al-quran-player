@@ -23,7 +23,7 @@ const AboutSurah = ({ SurahId, info }: IProps) => {
                     </>;
                 } else if (domNode.type === 'tag' && domNode.name === 'p') {
                     return <>
-                        <p className="mb-3">
+                        <p className="mb-3 text-default-600">
                             {domToReact(domNode.children)}
                         </p>
 

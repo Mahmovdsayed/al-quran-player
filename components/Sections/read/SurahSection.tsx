@@ -38,6 +38,14 @@ const SurahSection = ({ surahID, url }: IProps) => {
         }
     }, [dispatch, surahID]);
 
+    const parsedNum = Number(surahID);
+
+    // Check if num is less than or equal to 0, or greater than 114
+    if (parsedNum <= 0 || parsedNum > 114) {
+        return null;
+    }
+
+
     if (surahLoading || translationLoading) {
         return <div className="flex items-center justify-center"><Spinner /></div>;
     }

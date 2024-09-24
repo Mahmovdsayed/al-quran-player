@@ -58,6 +58,12 @@ const getChapter = async (chapterNumber: string) => {
   }
 };
 
+const Tafsir = async (verse_key: string) => {
+  try {
+    const { data } = await api.get(`https://api.quran.com/api/v4/quran/tafsirs/93?verse_key=1:2`);
+  } catch (error) {}
+};
+
 export {
   surahData,
   getRandomAyah,
