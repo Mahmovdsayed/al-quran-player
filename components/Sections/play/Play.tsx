@@ -119,7 +119,7 @@ const Play = ({ surahID }: IProps) => {
                 <CardHeader className="p-0">
                     <div className="w-full text-white flex-col space-y-1 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-fuchsia-600 to-pink-600 h-[100px] flex items-center justify-center ">
                         <h4 className="text-xl">{`${selectedSurah?.name_simple} - ${selectedSurah?.name_arabic}`}</h4>
-                        <span className="font-medium">( {selectedReciterId} )</span>
+                        {/* <span className="font-medium">( {selectedReciterId} )</span> */}
                     </div>
                 </CardHeader>
                 <CardBody>

@@ -31,7 +31,7 @@ const CopyAyah = ({ ayah }: IProps) => {
     };
 
     return <>
-        <Button onClick={() => handleClick(ayah)} size='sm' className='bg-transparent text-default-500 font-bold' isIconOnly>
+        <Button onClick={() => handleClick(ayah)} size='sm'  isIconOnly>
             <CopyDocumentIcon />
         </Button>
     </>;

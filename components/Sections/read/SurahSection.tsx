@@ -59,7 +59,7 @@ const SurahSection = ({ surahID, url }: IProps) => {
     }
 
     return (
-        <div>
+        <div className='px-0'>
             {surahh.map((verse, index) => (
                 <div key={verse.id}>
                     <AyahCard
@@ -69,7 +69,7 @@ const SurahSection = ({ surahID, url }: IProps) => {
                         sound={verse.id}
                         surahId={surahID}
                     />
-                    <Divider />
+                    <Divider className='my-4' />
                 </div>
             ))}
             <div className="flex justify-center space-x-2 items-center my-4">

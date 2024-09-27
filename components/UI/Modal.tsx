@@ -51,7 +51,7 @@ const Modals = ({ ayahAR, ayahEN, ayahKey }: IProps) => {
 
     return (
         <>
-            <Button onClick={handleOpen} size="sm" className="bg-transparent text-default-500 font-bold" isIconOnly>
+            <Button onClick={handleOpen} size="sm"  isIconOnly>
                 <IoMdShare size={15} />
             </Button>
 
