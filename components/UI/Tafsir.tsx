@@ -1,6 +1,6 @@
 'use client'
 import { getTafsir } from "@/context/surahContext";
-import { Tafsirs } from "@/static/tafsirs"; // Assuming your static data is here
+import { Tafsirs } from "@/static/tafsirs"; 
 import { RootState } from "@/store";
 import { Button, Divider, Select, SelectItem, Tooltip } from "@nextui-org/react";
 import { useEffect, useState } from "react";
@@ -14,13 +14,12 @@ interface IProps {
 }
 
 const Tafsir = ({ verse_key, text }: IProps) => {
-    const [data, setData] = useState<any[]>([]); // Hold API tafsir data
+    const [data, setData] = useState<any[]>([]); 
 
-    // Function to fetch Tafsir data based on verse_key
     const getTafsirData = async () => {
-        const response = await getTafsir(verse_key); // Fetch tafsir based on verse_key
+        const response = await getTafsir(verse_key); 
         console.log(response)
-        setData(response); // Set tafsir data in state
+        setData(response); 
     };
 
     useEffect(() => {
