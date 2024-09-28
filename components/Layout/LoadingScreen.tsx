@@ -1,3 +1,4 @@
+'use client'
 import { FallingLines } from "react-loader-spinner";
 
 interface IProps {
