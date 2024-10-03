@@ -6,13 +6,3 @@
     transition: transform 0.5s ease;
 }
 
-
-
-[data-scroll-container] {
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-[data-scroll-section] {
-  position: relative;
-}
