@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Navigation from "@/components/Layout/Navigation";
 import ScrollBar from "@/components/Layout/ScrollBar";
 import Footer from "@/components/Layout/Footer";
-import SmoothScroll from "../components/Layout/Scroll";
+import AdSense from "@/components/Layout/AdSense";
 const font = Poppins({ subsets: ["latin"], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] });
 
 
@@ -56,13 +56,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" dir="ltr" className="dark">
+      <head>
+        <AdSense pId="ca-pub-7851367835426330" />
+      </head>
       <body className={`${font.className} overflow-x-hidden min-h-screen`}>
         <Providers>
           <ScrollBar />
           <Navigation />
-          <SmoothScroll>
-            {children}
-          </SmoothScroll>
+          {children}
           <Footer />
           <Analytics />
         </Providers>
