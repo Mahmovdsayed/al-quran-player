@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Navigation from "@/components/Layout/Navigation";
 import ScrollBar from "@/components/Layout/ScrollBar";
 import Footer from "@/components/Layout/Footer";
+import SmoothScroll from "../components/Layout/Scroll";
 const font = Poppins({ subsets: ["latin"], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] });
 
 
@@ -59,7 +60,9 @@ export default function RootLayout({
         <Providers>
           <ScrollBar />
           <Navigation />
-          {children}
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
           <Footer />
           <Analytics />
         </Providers>
