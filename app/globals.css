@@ -5,3 +5,17 @@
 .compass {
     transition: transform 0.5s ease;
 }
+
+html, body {
+  overflow: hidden; /* Prevent default browser scroll */
+  min-height: 100%;
+}
+
+[data-scroll-container] {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+[data-scroll-section] {
+  position: relative;
+}
