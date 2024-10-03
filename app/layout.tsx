@@ -58,13 +58,13 @@ export default function RootLayout({
     <html lang="en" dir="ltr" className="dark">
       <body className={`${font.className} overflow-x-hidden min-h-screen`}>
         <Providers>
-          <SmoothScroll>
+{/*           <SmoothScroll> */}
           <ScrollBar />
           <Navigation />
             {children}
           <Footer />
           <Analytics />
-          </SmoothScroll>
+{/*           </SmoothScroll> */}
         </Providers>
       </body>
     </html>
