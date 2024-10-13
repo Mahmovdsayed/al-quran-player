@@ -1,50 +1,53 @@
-'use client' // Indicates that this is a client-side component
+'use client'
 
-// Import necessary modules and components
-import { NextUIProvider } from '@nextui-org/react'; // UI components provider from NextUI
-import { useRouter } from 'next/navigation'; // Hook to handle navigation within Next.js
-import { useEffect, useState } from 'react'; // React hooks for managing side effects and state
-import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes"; // Theme management for dark/light mode
-import LoadingScreen from '@/components/Layout/LoadingScreen'; // Custom loading screen component
-import { Toaster } from 'sonner'; // Library for displaying toast notifications
-import { Provider } from 'react-redux'; // Redux provider for managing global state
-import { persistor, store } from '@/store'; // Import the Redux store configuration
+import { NextUIProvider } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes";
+import LoadingScreen from '@/components/Layout/LoadingScreen';
+import { Toaster } from 'sonner';
+import { Provider } from 'react-redux';
+import { persistor, store } from '@/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { QueryClient, QueryClientProvider } from 'react-query'
 
-// Providers component wraps around the entire app to provide necessary context, theme, and state management
 export function Providers({ children }: { children: React.ReactNode }) {
-    const router = useRouter(); // Get the router object to navigate programmatically
-    const [loading, setLoading] = useState(true); // Local state to manage the loading screen visibility
+    const [queryClient] = useState(() => new QueryClient());
 
-    // useEffect hook runs once after the initial render to simulate a loading state
+    const router = useRouter();
+    const [loading, setLoading] = useState(true);
+
+
     useEffect(() => {
         setTimeout(() => {
-            setLoading(false); // Hide loading screen after 1 second
+            setLoading(false);
         }, 1000);
-    }, []); // Empty dependency array ensures this effect runs only once
+    }, []);
+
+
 
     return (
         <>
-            {/* Conditional rendering: show LoadingScreen if still loading, otherwise render the rest */}
             {loading ? (
-                <LoadingScreen /> // Show the loading screen while `loading` is true
+                <LoadingScreen />
             ) : (
-                // Wrapping the application with various providers
-                <NextUIProvider navigate={router.push}> {/* Provides UI components with navigation support */}
-                    <NextThemesProvider attribute="class"> {/* Provides theme switching support (e.g., dark/light mode) */}
-                        <Toaster
-                            duration={1000}
-                            position='top-center'
-                            theme={"light"}
-                            richColors
-                            expand={false}
-                        /> {/* Setup for toast notifications */}
-                        <Provider store={store}> {/* Provides Redux store to the entire app */}
-                            <PersistGate loading={null} persistor={persistor}>
-                                {children} {/* Render the child components */}
-                            </PersistGate>
-                        </Provider>
-                    </NextThemesProvider>
+                <NextUIProvider navigate={router.push}>
+                    <QueryClientProvider client={queryClient}>
+                        <NextThemesProvider attribute="class">
+                            <Toaster
+                                duration={1000}
+                                position='top-center'
+                                theme={"light"}
+                                richColors
+                                expand={false}
+                            />
+                            <Provider store={store}>
+                                <PersistGate loading={null} persistor={persistor}>
+                                    {children}
+                                </PersistGate>
+                            </Provider>
+                        </NextThemesProvider>
+                    </QueryClientProvider>
                 </NextUIProvider>
             )}
         </>

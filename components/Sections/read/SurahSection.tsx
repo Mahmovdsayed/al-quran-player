@@ -1,15 +1,13 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '@/store';
-import { fetchSurahData, selectSurah } from '@/store/slices/surahSlice';
-import { fetchSurahTranslationData, selectSurahTranslation } from '@/store/slices/surahTranslationSlice';
+import { useQuery } from 'react-query';
 import { Button, Divider, Spinner } from '@nextui-org/react';
 import { useParams, useRouter } from 'next/navigation';
 import { GrLinkNext, GrLinkPrevious } from 'react-icons/gr';
 import AyahCard from '@/components/UI/AyahCard';
 import { surah } from '@/static/surah';
+import { surahDataTranslation, surahData } from '@/context/surahContext';
+
 
 interface IProps {
     surahID: string;
@@ -17,10 +15,6 @@ interface IProps {
 }
 
 const SurahSection = ({ surahID, url }: IProps) => {
-    const dispatch = useDispatch<AppDispatch>();
-    const { surahh, loading: surahLoading, error: surahError } = useSelector(selectSurah);
-    const { translations, loading: translationLoading, error: translationError } = useSelector(selectSurahTranslation);
-
     const { slug } = useParams();
     const router = useRouter();
     const selectedSurah = surah.find(surahItem => surahItem.id.toString() === slug);
@@ -31,41 +25,49 @@ const SurahSection = ({ surahID, url }: IProps) => {
         ? surah.find(surahItem => surahItem.id === selectedSurah.id + 1)
         : null;
 
-    useEffect(() => {
-        if (surahID) {
-            dispatch(fetchSurahData(surahID));
-            dispatch(fetchSurahTranslationData(surahID));
-        }
-    }, [dispatch, surahID]);
+    // Fetch surah data using react-query
+    const { data: surahDataa, isLoading: surahLoading, isError: surahError } = useQuery({
+        queryFn: async () => await surahData(surahID),
+        queryKey: ['surah', surahID],
+        staleTime: 1000 * 60 * 60,
+        refetchOnWindowFocus: false,
+        refetchInterval: 1000 * 60 * 60,
+        refetchIntervalInBackground: true,
+    });
 
+    const { data: translationData, isLoading: translationLoading, isError: translationError } = useQuery({
+        queryFn: async () => await surahDataTranslation(surahID),
+        queryKey: ['surahTranslation', surahID],
+        staleTime: 1000 * 60 * 60,
+        refetchOnWindowFocus: false,
+        refetchInterval: 1000 * 60 * 60,
+        refetchIntervalInBackground: true,
+    });
+    console.log(surahDataa)
+    console.log(translationData)
     const parsedNum = Number(surahID);
 
-    // Check if num is less than or equal to 0, or greater than 114
     if (parsedNum <= 0 || parsedNum > 114) {
         return null;
     }
-
 
     if (surahLoading || translationLoading) {
         return <div className="flex items-center justify-center"><Spinner /></div>;
     }
 
-    if (surahError) {
-        return <div>Error fetching surah data: {surahError}</div>;
+    if (surahError || translationError) {
+        return <div>Error fetching surah data</div>;
     }
 
-    if (translationError) {
-        return <div>Error fetching translation data: {translationError}</div>;
-    }
 
     return (
         <div className='px-0'>
-            {surahh.map((verse, index) => (
+            {surahDataa.verses?.map((verse: any, index: number) => (
                 <div key={verse.id}>
                     <AyahCard
                         ayah={verse.text_imlaei}
-                        ayahENn={translations[index]?.text}
-                        numberInSurah={translations[index]?.verse_number}
+                        ayahENn={translationData.translations[index]?.text}
+                        numberInSurah={translationData.translations[index]?.verse_number}
                         sound={verse.id}
                         surahId={surahID}
                     />

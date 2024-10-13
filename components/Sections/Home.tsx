@@ -69,7 +69,7 @@ const Home = ({ }: IProps) => {
                                     <CardFooter className="flex items-center justify-center gap-4">
                                         <Button startContent={<FaReadme />} color="default" onPress={() => router.push(`/read/${su.id}`)} className="w-full">Read</Button>
                                         <Button onPress={() => router.push(`/play/${su.id}`)} startContent={<FaPlay />} color="primary" className="w-full text-white bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-pink-500 via-purple-500 to-blue-500">Play</Button>
-                                        <Button onPress={() => handleClick(`play/${su.id}`)} startContent={<IoShareSocial />} className="w-full ">Share</Button>
+                                        <Button onPress={() => handleClick(`read/${su.id}`)} startContent={<IoShareSocial />} className="w-full ">Share</Button>
                                     </CardFooter>
                                 </Card>
                             </motion.div>
