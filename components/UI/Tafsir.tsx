@@ -1,8 +1,8 @@
 'use client'
 import { getTafsir } from "@/context/surahContext";
-import { Tafsirs } from "@/static/tafsirs"; 
+import { Tafsirs } from "@/static/tafsirs";
 import { RootState } from "@/store";
-import { Button, Divider, Select, SelectItem, Tooltip } from "@nextui-org/react";
+import { Button, Divider, Select, SelectItem, Spinner, Tooltip } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { PiBookBookmarkDuotone } from "react-icons/pi";
 import { useSelector } from "react-redux";
@@ -14,12 +14,14 @@ interface IProps {
 }
 
 const Tafsir = ({ verse_key, text }: IProps) => {
-    const [data, setData] = useState<any[]>([]); 
-
+    const [data, setData] = useState<any[]>([]);
+    const [loading, setLoading] = useState(false)
     const getTafsirData = async () => {
-        const response = await getTafsir(verse_key); 
+        setLoading(true)
+        const response = await getTafsir(verse_key);
         console.log(response)
-        setData(response); 
+        setData(response);
+        setLoading(false)
     };
 
     useEffect(() => {
@@ -43,25 +45,29 @@ const Tafsir = ({ verse_key, text }: IProps) => {
                                     {text}
                                 </Drawer.Title>
                                 <Divider />
+                                {
+                                    loading ? <Spinner /> :
+                                        <div className="mb-2 leading-10 text-2xl  w-full text-start font-medium">
+                                            {data.map((tafsir: any) => {
+                                                const matchingTafsir = Tafsirs.find(t => t.id === tafsir.resource_id);
 
-                                <div className="mb-2 leading-10 text-2xl  w-full text-start font-medium">
-                                    {data.map((tafsir: any) => {
-                                        const matchingTafsir = Tafsirs.find(t => t.id === tafsir.resource_id);
+                                                if (matchingTafsir) {
+                                                    return (
+                                                        <div className={`my-3`} key={tafsir.resource_id}>
+                                                            <h3 className="font-bold mb-3 text-medium">
+                                                                {matchingTafsir.translated_name.name} ({matchingTafsir.language_name})
+                                                            </h3>
+                                                            <div className={matchingTafsir.language_name === "arabic" ? "text-end text-medium mb-3 text opacity-80" : "text-start text-medium mb-3 opacity-80"} dangerouslySetInnerHTML={{ __html: tafsir.text }} />
+                                                            <Divider />
+                                                        </div>
+                                                    );
+                                                }
+                                                return null;
+                                            })}
+                                        </div>
 
-                                        if (matchingTafsir) {
-                                            return (
-                                                <div className={`my-3`} key={tafsir.resource_id}>
-                                                    <h3 className="font-bold mb-3 text-medium">
-                                                        {matchingTafsir.translated_name.name} ({matchingTafsir.language_name})
-                                                    </h3>
-                                                    <div className={matchingTafsir.language_name === "arabic" ? "text-end text-medium mb-3 text opacity-80" : "text-start text-medium mb-3 opacity-80"} dangerouslySetInnerHTML={{ __html: tafsir.text }} />
-                                                    <Divider />
-                                                </div>
-                                            );
-                                        }
-                                        return null;
-                                    })}
-                                </div>
+                                }
+
                             </div>
                         </div>
                     </Drawer.Content>
