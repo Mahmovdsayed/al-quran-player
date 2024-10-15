@@ -71,9 +71,9 @@ const SectionBanner = ({ url }: IProps) => {
                     <Search />
                 </div>
                 <div className="flex items-center justify-center space-x-2 ">
-                    <Button href={`/${"read"}/${slug}`} startContent={<FaReadme />} variant="flat" size="sm">Read Surah</Button>
-                    <Button href={`/${"play"}/${slug}`} startContent={<FaPlay />} variant="flat" size="sm">Play Audio</Button>
-                    <Button href={`/${"info"}/${slug}`} startContent={<FaInfo />} variant="flat" size="sm">Surah Info</Button>
+                    <Button startContent={<FaReadme />} onClick={() => router.push(`/${"read"}/${slug}`)} variant="flat" size="sm">Read Surah</Button>
+                    <Button startContent={<FaPlay />} onClick={() => router.push(`/${"play"}/${slug}`)} variant="flat" size="sm">Play Audio</Button>
+                    <Button startContent={<FaInfo />} onClick={() => router.push(`/${"info"}/${slug}`)} variant="flat" size="sm">Surah Info</Button>
                 </div>
 
 
