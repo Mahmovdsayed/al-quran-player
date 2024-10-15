@@ -46,7 +46,9 @@ const Tafsir = ({ verse_key, text }: IProps) => {
                                 </Drawer.Title>
                                 <Divider />
                                 {
-                                    loading ? <Spinner /> :
+                                    loading ? <div className="flex items-center justify-center my-4">
+                                        <Spinner />
+                                    </div> :
                                         <div className="mb-2 leading-10 text-2xl  w-full text-start font-medium">
                                             {data.map((tafsir: any) => {
                                                 const matchingTafsir = Tafsirs.find(t => t.id === tafsir.resource_id);
