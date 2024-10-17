@@ -7,6 +7,7 @@ import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import Bread from "../UI/Bread";
 import { FaInfo, FaPlay, FaReadme } from "react-icons/fa";
 import Search from "./Search";
+import AdBanner from "./AdBanner";
 // import AdBanner from "./AdBanner";
 
 interface IProps {
@@ -30,9 +31,9 @@ const SectionBanner = ({ url }: IProps) => {
                 <div className="flex items-center justify-center">
                     <Bread name={selectedSurah ? `Surah ` + selectedSurah.name_complex : 'Surah not found'} />
                 </div>
-                {/*                 <div className="my-3">
+                <div className="my-3 px-4">
                     <AdBanner />
-                </div> */}
+                </div>
                 <h1 className="text-2xl md:text-4xl font-semibold mb-3">
                     {/* Display 'name_complex' if Surah is found, otherwise show a fallback */}
                     {selectedSurah ? `Surah ` + selectedSurah.name_complex : 'Surah not found'}

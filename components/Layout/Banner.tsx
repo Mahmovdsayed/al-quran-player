@@ -6,6 +6,7 @@ import { useState, useCallback, useMemo, useRef } from "react";
 import { BsStars } from "react-icons/bs";
 import AyahCard from "../UI/AyahCard";
 import Search from "./Search";
+import AdBanner from "./AdBanner";
 // import AdBanner from "./AdBanner";
 
 interface IProps { }
@@ -44,8 +45,9 @@ const Banner = ({ }: IProps) => {
     return (
         <div className="w-full pt-10 bg-gradient-to-b from-gray-200 to-white dark:bg-gradient-to-b dark:from-[#22213d] dark:to-black flex items-center justify-center">
             <div className="text-center px-4">
-{/*                 <AdBanner /> */}
-                <h1 className="text-2xl md:text-4xl font-semibold my-3">
+                <div className="my-3 px-4">
+                    <AdBanner />
+                </div>                <h1 className="text-2xl md:text-4xl font-semibold my-3">
                     Comprehensive Quran Experience: Listen, Learn, and Understand
                 </h1>
                 <p className="text-default-600 px-4 text-tiny md:text-sm md:w-3/4 m-auto">
