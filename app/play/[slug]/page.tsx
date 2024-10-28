@@ -15,20 +15,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     try {
         const data = await getChapter(id);
         return {
-            title: `${data.name_simple} - ${data.name_arabic}`,
+            title: `Surah ${data?.name_simple} - سوره ${data?.name_arabic}`,
             description: `Discover Surah ${data?.name_simple} , the ${data?.id}th chapter of the Quran, revealed in ${data?.revelation_place === 'makkah' ? 'Makkah' : 'Madinah'}. Listen to the beautiful recitation of Surah ${data?.name_simple} and explore its profound meanings and messages.`,
             openGraph: {
-                title: `${data.name_simple} - ${data.name_arabic}`,
+                title: `Surah ${data?.name_simple} - سوره ${data?.name_arabic}`,
                 description: `Discover Surah ${data?.name_simple} , the ${data?.id}th chapter of the Quran, revealed in ${data?.revelation_place === 'makkah' ? 'Makkah' : 'Madinah'}. Listen to the beautiful recitation of Surah ${data?.name_simple} and explore its profound meanings and messages.`,
             },
             twitter: {
                 card: "summary_large_image",
-                title: `${data.englishName} - ${data.name}`,
+                title: `Surah ${data?.name_simple} - سوره ${data?.name_arabic}`,
                 description: `Discover Surah ${data?.name_simple} , the ${data?.id}th chapter of the Quran, revealed in ${data?.revelation_place === 'makkah' ? 'Makkah' : 'Madinah'}. Listen to the beautiful recitation of Surah ${data?.name_simple} and explore its profound meanings and messages.`,
-            },
-            robots: {
-                index: true,
-                follow: true,
             },
         };
     } catch (error) {
@@ -44,10 +40,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
                 title: "Surah Not Found",
                 description: "The requested Surah could not be found.",
             },
-            robots: {
-                index: false,
-                follow: true,
-            },
+
         };
     }
 }

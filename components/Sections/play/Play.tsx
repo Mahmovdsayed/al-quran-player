@@ -80,15 +80,23 @@ const Play = ({ surahID }: IProps) => {
             setIsLoading(false);
         };
 
+        const handleEnded = () => {
+            if (nextSurah) {
+                router.push(`/play/${nextSurah.id}`);
+            }
+        };
+
         audio.addEventListener("loadedmetadata", handleLoadedMetadata);
         audio.addEventListener("timeupdate", handleTimeUpdate);
         audio.addEventListener("error", handleError);
+        audio.addEventListener("ended", handleEnded); 
 
         return () => {
             audio.pause();
             audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
             audio.removeEventListener("timeupdate", handleTimeUpdate);
             audio.removeEventListener("error", handleError);
+            audio.removeEventListener("ended", handleEnded);
         };
     }, [surahID, selectedReciterId]);
 
