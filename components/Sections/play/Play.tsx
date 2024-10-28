@@ -58,6 +58,11 @@ const Play = ({ surahID }: IProps) => {
         const handleLoadedMetadata = () => {
             setDuration(audio.duration);
             setIsLoading(false);
+
+            audio.play().catch(error => {
+                console.log("Autoplay failed:", error);
+            });
+            setIsPlaying(true);
         };
 
         const handleTimeUpdate = () => {
