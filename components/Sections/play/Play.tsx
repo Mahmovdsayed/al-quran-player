@@ -37,9 +37,9 @@ const Play = ({ surahID }: IProps) => {
 
         if ('mediaSession' in navigator) {
             navigator.mediaSession.metadata = new MediaMetadata({
-                title: selectedSurah?.name_simple || 'Surah',
+                title: `Surah ${selectedSurah?.name_simple} - سوره ${selectedSurah?.name_arabic}` || "Surah",
                 artist: selectedReciterId || 'NEST',
-                album: selectedSurah?.name_arabic || 'Quran',
+                album: 'AL-Quran Player',
                 artwork: [
                     { src: 'https://res.cloudinary.com/dxvpvtcbg/image/upload/v1718408970/tmmomilgpfuexrqjpynr.svg', sizes: '512x512', type: 'image/jpeg' }
                 ]
@@ -135,7 +135,7 @@ const Play = ({ surahID }: IProps) => {
             <Card shadow="none" className="bg-gray-200 dark:bg-[#181818]">
                 <CardHeader className="p-0">
                     <div className="w-full text-white flex-col space-y-1 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-fuchsia-600 to-pink-600 h-[100px] flex items-center justify-center ">
-                        <h4 className="text-xl">{`${selectedSurah?.name_simple} - ${selectedSurah?.name_arabic}`}</h4>
+                        <h4 className="text-xl">{`Surah ${selectedSurah?.name_simple} - سوره ${selectedSurah?.name_arabic}`}</h4>
                     </div>
                 </CardHeader>
                 <CardBody>
