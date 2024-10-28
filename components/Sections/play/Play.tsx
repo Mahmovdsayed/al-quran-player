@@ -1,15 +1,13 @@
 'use client'
 import { useEffect, useRef, useState } from "react";
-import { Button, Card, Image, CardBody, CardFooter, CardHeader, Spinner, Divider } from "@nextui-org/react";
+import { Button, Card, Spinner, Divider, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
 import { FaBackward, FaForward, FaPause, FaPlay, FaDownload } from "react-icons/fa";
 import { useParams, useRouter } from "next/navigation";
 import { surah } from "@/static/surah";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 import { downloadFile } from "@/functions/downloadFile";
-import { IoShareSocial } from "react-icons/io5";
 
-// تعريف props
 interface IProps {
     surahID: any
 }
@@ -34,9 +32,28 @@ const Play = ({ surahID }: IProps) => {
     const selectedReciterId = useSelector((state: RootState) => state.reciter.selectedReciterId);
 
     useEffect(() => {
-        // Initialize the audio element
         const audio = new Audio(`https://cdn.islamic.network/quran/audio-surah/128/${selectedReciterId}/${surahID}.mp3`);
         audioRef.current = audio;
+
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: selectedSurah?.name_simple || 'Surah',
+                artist: 'Powered by NEST',
+                album: selectedSurah?.name_arabic || 'Quran',
+                artwork: [
+                    { src: 'https://res.cloudinary.com/dxvpvtcbg/image/upload/v1725806891/vkif9lkbhdj5k4ws5pdh.jpg', sizes: '512x512', type: 'image/jpeg' } 
+                ]
+            });
+
+            navigator.mediaSession.setActionHandler('play', () => {
+                audio.play();
+                setIsPlaying(true);
+            });
+            navigator.mediaSession.setActionHandler('pause', () => {
+                audio.pause();
+                setIsPlaying(false);
+            });
+        }
 
         const handleLoadedMetadata = () => {
             setDuration(audio.duration);
@@ -62,7 +79,7 @@ const Play = ({ surahID }: IProps) => {
             audio.removeEventListener("timeupdate", handleTimeUpdate);
             audio.removeEventListener("error", handleError);
         };
-    }, [surahID, selectedReciterId]); // Add selectedReciterId to dependencies
+    }, [surahID, selectedReciterId]);
 
     const togglePlayPause = () => {
         if (!audioRef.current) return;
@@ -115,11 +132,10 @@ const Play = ({ surahID }: IProps) => {
 
     return (
         <div className="grid grid-cols-1 px-4 mx-auto my-6">
-            <Card shadow="none" className="  bg-gray-200 dark:bg-[#181818]">
+            <Card shadow="none" className="bg-gray-200 dark:bg-[#181818]">
                 <CardHeader className="p-0">
                     <div className="w-full text-white flex-col space-y-1 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-fuchsia-600 to-pink-600 h-[100px] flex items-center justify-center ">
                         <h4 className="text-xl">{`${selectedSurah?.name_simple} - ${selectedSurah?.name_arabic}`}</h4>
-                        {/* <span className="font-medium">( {selectedReciterId} )</span> */}
                     </div>
                 </CardHeader>
                 <CardBody>
