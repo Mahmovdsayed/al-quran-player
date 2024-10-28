@@ -38,10 +38,10 @@ const Play = ({ surahID }: IProps) => {
         if ('mediaSession' in navigator) {
             navigator.mediaSession.metadata = new MediaMetadata({
                 title: selectedSurah?.name_simple || 'Surah',
-                artist: 'Powered by NEST',
+                artist: selectedReciterId || 'NEST',
                 album: selectedSurah?.name_arabic || 'Quran',
                 artwork: [
-                    { src: 'https://res.cloudinary.com/dxvpvtcbg/image/upload/v1725806891/vkif9lkbhdj5k4ws5pdh.jpg', sizes: '512x512', type: 'image/jpeg' } 
+                    { src: 'https://res.cloudinary.com/dxvpvtcbg/image/upload/v1718408970/tmmomilgpfuexrqjpynr.svg', sizes: '512x512', type: 'image/jpeg' }
                 ]
             });
 
