@@ -53,6 +53,12 @@ const Play = ({ surahID }: IProps) => {
                 audio.pause();
                 setIsPlaying(false);
             });
+            navigator.mediaSession.setActionHandler('nexttrack', () => {
+                if (nextSurah) router.push(`/play/${nextSurah.id}`);
+            });
+            navigator.mediaSession.setActionHandler('previoustrack', () => {
+                if (previousSurah) router.push(`/play/${previousSurah.id}`);
+            });
         }
 
         const handleLoadedMetadata = () => {
