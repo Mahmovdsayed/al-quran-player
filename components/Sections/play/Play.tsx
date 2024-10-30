@@ -89,7 +89,7 @@ const Play = ({ surahID }: IProps) => {
         audio.addEventListener("loadedmetadata", handleLoadedMetadata);
         audio.addEventListener("timeupdate", handleTimeUpdate);
         audio.addEventListener("error", handleError);
-        audio.addEventListener("ended", handleEnded); 
+        audio.addEventListener("ended", handleEnded);
 
         return () => {
             audio.pause();
@@ -153,10 +153,11 @@ const Play = ({ surahID }: IProps) => {
         <div className="grid grid-cols-1 px-4 mx-auto my-6">
             <Card shadow="none" className="bg-gray-200 dark:bg-[#181818]">
                 <CardHeader className="p-0">
-                    <div className="w-full text-white flex-col space-y-1 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-fuchsia-600 to-pink-600 h-[100px] flex items-center justify-center ">
+                    <div className="w-full text-white flex-col space-y-1 bg-content2 h-[100px] flex items-center justify-center ">
                         <h4 className="text-xl">{`Surah ${selectedSurah?.name_simple} - سوره ${selectedSurah?.name_arabic}`}</h4>
                     </div>
                 </CardHeader>
+                {/* <Divider /> */}
                 <CardBody>
                     <div className="flex-1 mx-4">
                         <input
