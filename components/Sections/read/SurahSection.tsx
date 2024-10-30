@@ -61,7 +61,7 @@ const SurahSection = ({ surahID, url }: IProps) => {
 
 
     return (
-        <div className='px-0'>
+        <div className='px-2'>
             {surahDataa.verses?.map((verse: any, index: number) => (
                 <div key={verse.id}>
                     <AyahCard
