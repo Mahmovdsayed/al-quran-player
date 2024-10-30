@@ -153,7 +153,7 @@ const Play = ({ surahID }: IProps) => {
         <div className="grid grid-cols-1 px-4 mx-auto my-6">
             <Card shadow="none" className="bg-gray-200 dark:bg-[#181818]">
                 <CardHeader className="p-0">
-                    <div className="w-full text-white flex-col space-y-1 bg-content2 h-[100px] flex items-center justify-center ">
+                    <div className="w-full text-white flex-col space-y-1 bg-gray-500 dark:bg-content2 h-[100px] flex items-center justify-center ">
                         <h4 className="text-xl">{`Surah ${selectedSurah?.name_simple} - سوره ${selectedSurah?.name_arabic}`}</h4>
                     </div>
                 </CardHeader>
