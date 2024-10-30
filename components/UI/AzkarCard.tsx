@@ -30,7 +30,7 @@ const AzkarCard = ({ zekr, repeat, bless }: IProps) => {
                 shadow="none"
                 onPress={handleCardClick}
             >
-                <CardHeader className="py-10 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-900 to-red-600 min-h-[100px]">
+                <CardHeader className="py-10 bg-content2 min-h-[100px]">
                     <div className="flex justify-center text-white w-full items-center flex-col px-4">
                         <span>Repetitions left: {remainingRepeats}</span>
                         <p className="text-sm   mt-1">
@@ -40,8 +40,8 @@ const AzkarCard = ({ zekr, repeat, bless }: IProps) => {
                             className="mt-3"
                             size="sm"
                             radius="sm"
-                            color="success"
-                            variant="bordered"
+                            color="default"
+                            variant="shadow"
                             onPress={handleReset}
                         >
                             Start Over
