@@ -39,7 +39,7 @@ const Home = ({ }: IProps) => {
                         <div className="flex items-center space-x-2">
                             <FaQuran />
                             <span>Surah</span>
-                            <Chip size="sm" variant="faded">114</Chip>
+                            <Chip color="primary" size="sm" variant="flat">114</Chip>
                         </div>
                     }
 
@@ -83,7 +83,7 @@ const Home = ({ }: IProps) => {
                         <div className="flex items-center space-x-2">
                             <GiPrayerBeads />
                             <span>Prayer Times</span>
-                            <Chip size="sm" variant="faded">5</Chip>
+                            <Chip color="primary" size="sm" variant="flat">5</Chip>
                         </div>
                     }
                 >
@@ -95,7 +95,7 @@ const Home = ({ }: IProps) => {
                         <div className="flex items-center space-x-2">
                             <CgNotes />
                             <span>Azkar</span>
-                            <Chip size="sm" variant="faded">3</Chip>
+                            <Chip color="primary" size="sm" variant="flat">3</Chip>
                         </div>
                     }
                 >
