@@ -58,7 +58,7 @@ const Home = ({ }: IProps) => {
                                             <Chip size="sm" radius="sm" className="mb-2 text-tiny text-white bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-pink-500 via-purple-500 to-blue-500">{su.verses_count} Ayahs</Chip>
                                         </div>
                                         <p className="font-medium text-xl">
-                                            <sup className="text-default-500 font-bold text-tiny md:text-sm">{su.id}</sup> {su.name_simple} - {su.name_arabic}
+                                            <sup className=" font-bold text-tiny md:text-sm text-purple-500 opacity-70">{su.id}</sup> {su.name_simple} - {su.name_arabic}
                                         </p>
                                         <p className="text-default-500">{su.translated_name.name}</p>
                                         <PageRange pages={su.pages} />
