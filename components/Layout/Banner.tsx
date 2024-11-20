@@ -43,7 +43,7 @@ const Banner = ({ }: IProps) => {
     }, [verse, loading]);
 
     return (
-        <div className="w-full pt-10 bg-gradient-to-b from-gray-200 to-white dark:bg-gradient-to-b dark:from-[#22213d] dark:to-black flex items-center justify-center">
+        <div className="w-full pt-10 bg-gradient-to-b  from-gray-200 to-white dark:bg-gradient-to-b dark:from-[#22213d] dark:to-black flex items-center justify-center">
             <div className="text-center px-4">
 
                 <h1 className="text-2xl md:text-4xl font-semibold my-3">

@@ -48,7 +48,7 @@ const AyahCard = ({ ayah, ayahENn, sound, surahId, numberInSurah }: IProps) => {
     };
 
     return (
-        <Card isPressable className='my-2 p-4 w-full  z-0 ' radius="sm" shadow="none">
+        <Card isPressable className='my-2 p-4 w-full bg-transparent z-0 ' radius="sm" shadow="none">
             <CardHeader className='flex justify-between items-center'>
                 <div>
                     <Chip size="sm" radius="sm" className="m - 0 font - bold text -default -800">
