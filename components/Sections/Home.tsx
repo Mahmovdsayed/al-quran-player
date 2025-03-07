@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { CgNotes } from "react-icons/cg";
 import AzkarSection from "./AzkarSection";
+import JuzsSection from "./JuzsSection";
 
 const Home = ({ }: IProps) => {
     const router = useRouter()
@@ -94,13 +95,13 @@ const Home = ({ }: IProps) => {
                     title={
                         <div className="flex items-center space-x-2">
                             <CgNotes />
-                            <span>Azkar</span>
-                            <Chip color="primary" size="sm" variant="flat">3</Chip>
+                            <span>Juzs</span>
+                            <Chip color="primary" size="sm" variant="flat">30</Chip>
                         </div>
                     }
                 >
                     <div className="w-full">
-                        <AzkarSection />
+                        <JuzsSection />
                     </div>
                 </Tab>
             </Tabs>

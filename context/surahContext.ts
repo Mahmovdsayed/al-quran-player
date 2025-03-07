@@ -70,6 +70,18 @@ const getTafsir = async (verse_key: string) => {
   }
 };
 
+const getJuzData = async (juzNumber: string) => {
+  try {
+    const { data } = await api.get(
+      `https://api.alquran.cloud/v1/juz/${juzNumber}/ar.alafasy`
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
 export {
   surahData,
   getRandomAyah,
@@ -77,4 +89,5 @@ export {
   getChapter,
   surahDataTranslation,
   getTafsir,
+  getJuzData,
 };
